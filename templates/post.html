@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+  <title>post</title>
+
+    <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Roboto:100,300,400,500,700|Philosopher:400,400i,700,700i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Neucha&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400&family=Neucha&display=swap" rel="stylesheet">
+
+    <link href="../../static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../static/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="../../static/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="../../static/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="../../static/assets/css/style.css" rel="stylesheet">
+    <link href="../../static/assets/vendor/aos/aos.css" rel="stylesheet">
+
+    <!-- Font awesome -->
+  <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+
+</head>
+<body class="post-body">
+  {% include "header.html" %}
+
+<div class="wrapper">
+    <div class="top">
+        <div class="title"><h1>{{post.title}}</h1></div>
+    </div>
+        <div class="content2">
+            <div class="card">
+                <div class="content2">
+                <img src="{{post.img_url}}" style="width: 600px; height: 500px;">
+                    </div>
+                <div class="post-content">
+                    {{ post.body | safe }}
+                </div>
+<!--                <h2 class="sub">{{subtitle}}</h2>-->
+<!--                {% for line in body: %}-->
+<!--                    {% if line != "": %}-->
+<!--                        {% if line[0] != '/' and line[0] != '!' and line[0] != '@': %}-->
+<!--                            <p class="post-content">* {{ line }}</p>-->
+<!--                        {% elif line[0] == '/': %}-->
+<!--                            <h2 class="sub">{{ line.split('/')[1] }}</h2>-->
+<!--                        {% elif line[0] == '@': %}-->
+<!--                            <a href="{{line.split('@')[1]}}"><span class="sub">{{ line.split('@')[1] }}</span></a>-->
+<!--                        {% elif line[0] == '!': %}-->
+<!--                            <p class="code sub">{{ line.split('!')[1] }}</p>-->
+<!--                        {% endif %}-->
+<!--                    {% else: %}-->
+<!--                        <p class="post-content">{{""}}</p>-->
+<!--                    {% endif %}-->
+<!--                {% endfor %}-->
+            </div>
+    </div>
+    {% import 'bootstrap/wtf.html' as wtf %}
+    <div class="container ck-div">
+        <h1 class="comment">Comments</h1>
+        <ul class="comments">
+                {% for comment in post.comments %}
+                    <li>
+                        <span><img src="{{ comment.author.email | gravatar}}" class="avatar">{{ comment.author.name | safe }}</span><br>
+                        <small>{{ comment.text | safe}}</small>
+                    </li>
+                {% endfor %}
+        </ul>
+        {{ ckeditor.load() }}
+        {{ wtf.quick_form(form=form, novalidate=True, button_map={'submit': 'primary'}) }}
+    </div>
+
+</div>
+  <script src="../../static\assets/vendor/aos/aos.js"></script>
+  <script src="../../static\assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../../static\assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../../static\assets/vendor/php-email-form/validate.js"></script>
+  <script src="../../static\assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="../static/assets/js/main.js"></script>
+</body>
+<span id="contact"></span>
+
+{% include "contact.html" %}
+{% include "footer.html" %}
+
+</html>

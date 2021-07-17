@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>header</title>
+</head>
+<body>
+    <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <div id="logo">
+        <h1><a href="../..">Blog<span>363</span></a></h1>
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="../..">Home</a></li>
+          <li><a class="nav-link scrollto" href="../../#features">blogs</a></li>
+          {% if not logged_in: %}
+            <li><a class="nav-link scrollto" href="{{ url_for('register') }}">Register</a></li>
+            <li><a class="nav-link scrollto" href="{{ url_for('admin_login') }}">Admin</a></li>
+            <li><a class="nav-link scrollto" href="{{ url_for('login') }}">Login</a></li>
+          {% else : %}
+            <li><a class="nav-link scrollto" href="{{ url_for('logout') }}">Logout</a></li>
+          {% endif %}
+          <li><a class="nav-link scrollto" href="../../#contact">Contact</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+</body>
+</html>

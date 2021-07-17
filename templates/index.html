@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Blog363</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Roboto:100,300,400,500,700|Philosopher:400,400i,700,700i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="static/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="static/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="static/assets/css/style.css" rel="stylesheet">
+
+  <!-- Font awesome -->
+  <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+
+  <!-- =======================================================
+  * Template Name: eStartup - v4.1.0
+  * Template URL: https://bootstrapmade.com/estartup-bootstrap-landing-page-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+{% include "header.html" %}
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero">
+    <div class="hero-container" data-aos="fade-in">
+      <h1>Welcome to Janar's Blogs</h1>
+      <h2>App dev, Web dev, Competative coding&amp; more...</h2>
+      <img src="../static/assets/images/hero-img.png" alt="Hero Imgs" data-aos="zoom-out" data-aos-delay="100">
+      <a href="#features" class="btn-get-started scrollto">Get Started</a>
+<!--      <div class="btns">-->
+<!--        <a href="#app"><i class="fa fa-apple fa-3x"></i> App Dev</a>-->
+<!--        <a href="#web"><i class="fa fa-play fa-3x"></i> Web Dev</a>-->
+<!--        <a href="#cp"><i class="fa fa-windows fa-3x"></i> Competative</a>-->
+<!--      </div>zs-->
+    </div>
+  </section><!-- End Hero Section -->
+
+  <main id="main">
+
+    <!-- ======= Features Section ======= -->
+    <section id="features" class="padd-section text-center">
+
+      <div class="container" data-aos="fade-up">
+        <div class="section-title text-center">
+          <h1>Blogs.</h1>
+        </div>
+        {% if posts: %}
+          <div class="blog-section-title" id='app'>
+            App Dev.
+          </div>
+          <div class="container" data-aos="fade-up" data-aos-delay="100">
+            <div class="row app-dev blog-section">
+                {% for post in posts: %}
+                  <div class="col-md-6 col-lg-4">
+                    <div class="feature-block">
+                        <img src="static/assets/images/svg/paint-palette.svg" alt="img">
+    <!--                    <img src="static/assets/images/svg/vector.svg" alt="img">-->
+
+                      {% if post.title |length > 28: %}
+                        <h4 style="font-size: 10px;">{{ post.title }} </h4>
+                      {% else: %}
+                        <h4>{{ post.title }}</h4>
+                      {% endif %}
+                      <div style='font-size: 13px; padding: 10px;'>{{ post.date }}</div>
+                      <p class="sub-pad">Author: {{ post.author.name }}</p>
+
+                      <div style='padding: 20px;'><a href="{{ url_for('post', id=post.id) }}">read more</a> <br>
+                        {% if current_user.id == 1: %}
+                          <a href="{{ url_for('edit_post', id=post.id) }}">Edit</a> <br>
+                          <a href="{{ url_for('delete_post', id=post.id) }}"><i class="fas fa-trash"></i></a>
+                        {% endif %}
+                      </div>
+                    </div>
+                  </div>
+                {% endfor %}
+            </div>
+
+  <!--          <div class="blog-section-title" id='web'>-->
+  <!--            Web Dev.-->
+  <!--          </div>-->
+
+  <!--          <div class="row web-dev blog-section">-->
+  <!--            {% for post in web: %}-->
+  <!--              <div class="col-md-6 col-lg-4">-->
+  <!--                <div class="feature-block">-->
+  <!--                  {% if post['category'] == 'frontend': %}-->
+  <!--                    <img src="static/assets/images/svg/paint-palette.svg" alt="img">-->
+  <!--                  {% else: %}-->
+  <!--                    <img src="static/assets/images/svg/vector.svg" alt="img">-->
+  <!--                  {% endif %}-->
+  <!--                  {% if post['title']|length > 28: %}-->
+  <!--                    <h4 style="font-size: 10px;">{{ post['title'] }} </h4>-->
+  <!--                  {% else: %}-->
+  <!--                    <h4>{{ post['title'] }}</h4>-->
+  <!--                  {% endif %}-->
+  <!--                  <div style='font-size: 13px; padding: 10px;'>{{ post['date'] }}</div>-->
+  <!--                  <p class="sub-pad">{{ post['subtitle'] }}</p>-->
+  <!--                  <div style='padding: 20px;'><a href="{{ url_for('new_post', type='web', id=post['id']) }}">read more</a></div>-->
+  <!--                </div>-->
+  <!--              </div>-->
+  <!--            {% endfor %}-->
+
+  <!--          </div>-->
+
+  <!--          <div class="blog-section-title" id='cp'>-->
+  <!--            Competative Programming.-->
+  <!--          </div>-->
+  <!--          <div class="row Competative blog-section">-->
+
+  <!--            {% for post in cp: %}-->
+  <!--              <div class="col-md-6 col-lg-4">-->
+  <!--                <div class="feature-block">-->
+  <!--                  <img src="static/assets/images/svg/code.svg" alt="img">-->
+  <!--                  {% if post['title']|length > 28: %}-->
+  <!--                    <h4 style="font-size: 10px;">{{ post['title'] }} </h4>-->
+  <!--                  {% else: %}-->
+  <!--                    <h4>{{ post['title'] }}</h4>-->
+  <!--                  {% endif %}-->
+  <!--                  <div style='font-size: 13px; padding: 10px;'>{{ post['date'] }}</div>-->
+  <!--                  <p class="sub-pad">{{ post['subtitle'] }}</p>-->
+  <!--                  <div style='padding: 20px;'><a href="{{ url_for('new_post', type='cp', id=post['id']) }}">read more</a></div>-->
+  <!--                </div>-->
+  <!--              </div>-->
+  <!--            {% endfor %}-->
+
+  <!--          </div>-->
+
+          </div>
+        {% else: %}
+          <div class="container">
+            <h1>Janar363 Haven't posted yet.</h1>
+          </div>
+        {% endif %}
+      </div>
+    </section><!-- End Features Section -->
+
+
+  </main><!-- End #main -->
+<span id="contact"></span>
+
+
+{% include "contact.html" %}
+
+ {% include "footer.html" %}
+
+<!---->
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+{% if current_user.id == 1: %}
+  <a href="{{ url_for('make_post' )}}" class="back-to-top-new d-flex align-items-center justify-content-center btn btn-primary new_post">New Post</a>
+{% endif %}
+
+
+  <!-- Vendor JS Files -->
+  <script src="static\assets/vendor/aos/aos.js"></script>
+  <script src="static\assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="static\assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="static\assets/vendor/php-email-form/validate.js"></script>
+  <script src="static\assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="static/assets/js/main.js"></script>
+
+</body>
+
+</html>
