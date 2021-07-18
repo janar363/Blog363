@@ -54,7 +54,6 @@ def admin(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         print("Hello")
-        return f(*args, **kwargs)
 
         try:
             print(current_user.id)
@@ -67,7 +66,6 @@ def admin(f):
 
             print('Except eneterd')
             return abort(403)
-
     return decorated_function
 
 
