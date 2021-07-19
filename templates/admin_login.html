@@ -3,14 +3,14 @@
 
 {% block content %}
         <div class="box">
-            <h1 class="auth-label">Admin Login</h1>
+            <h1 id="auth-label-admin">Admin Login</h1>
             {% with messages = get_flashed_messages() %}
                 {% if messages: %}
                     <p class="flash-msg">{{ messages[-1] }}</p>
                 {% endif %}
             {% endwith %}
 
-            {{ wtf.quick_form(form=form, novalidate=True, button_map={"submit": "primary"}) }}
+            {{ wtf.quick_form(form=form, novalidate=True, button_map={"submit": "danger"}) }}
         </div>
 
 {% endblock %}

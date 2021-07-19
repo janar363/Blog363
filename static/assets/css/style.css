@@ -857,10 +857,11 @@ label {
 }
 .box h1, .comment { color: #0d6efd; text-shadow: 0 0 10px rgba(0,0,0,0.3); letter-spacing:1px; text-align:center; align:center; font-family: "Philosopher", sans-serif;}
 
+#auth-label-admin { color: #dc3545; text-shadow: 0 0 10px rgba(0,0,0,0.3); letter-spacing:1px; text-align:center; align:center; font-family: "Philosopher", sans-serif;}
 .comment {
     text-align: left;
 }
-.box .btn-primary {
+.box .btn-primary, .box .btn-danger {
     position: absolute;
     padding: 12px 265px;
     left: 20%;
