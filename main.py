@@ -262,10 +262,23 @@ def login():
     return render_template('login.html', form=login_form, logged_in=current_user.is_authenticated)
 
 
-@app.route('/admin_login')
+@app.route('/admin_login', methods=['GET', 'POST'])
 def admin_login():
     login_form = LoginForm()
-    return render_template('admin_login.html', form=login_form)
+
+    if login_form.validate_on_submit():
+        user = User.query.filter_by(email=login_form.email.data).first()
+        if not user:
+            flash("Email doesn't exist, login using registered email!")
+        elif user.id != 1:
+            flash('Not authorized, login here as user')
+            return redirect(url_for('login'))
+        elif not check_password_hash(user.password, login_form.password.data):
+            flash("Incorrect password, Try again!")
+        else:
+            login_user(user)
+            return redirect(url_for('home'))
+    return render_template('admin_login.html', form=login_form, logged_in=current_user.is_authenticated)
 
 
 @app.route('/logout')
